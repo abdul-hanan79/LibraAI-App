@@ -1,4 +1,5 @@
-import React from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 import { View, StyleSheet, Image, TextInput } from "react-native";
 import { Button } from "tamagui";
 
@@ -24,9 +25,13 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
           placeholderTextColor="#626262"
         />
       </View>
-      <Button onPress={handleSendMessage} disabled={!value || loading}>
-        {loading ? "loading..." : "Send"}
-      </Button>
+      <Button
+        onPress={handleSendMessage}
+        disabled={!value || loading}
+        icon={<Ionicons name="send-outline" size={20} color="white" />}
+        backgroundColor={"#000"}
+        circular={true}
+      ></Button>
       {/* <Image
         // resizeMode="auto"
         source={{
@@ -45,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 56,
     paddingHorizontal: 21,
+    gap: 12,
   },
   inputWrapper: {
     borderRadius: 33,

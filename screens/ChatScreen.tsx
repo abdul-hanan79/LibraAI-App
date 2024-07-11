@@ -4,7 +4,6 @@ import ChatHeader from "../components/templates/chat/ChatHeader";
 import MessageBubble from "../components/templates/chat/MessageBubble";
 import ChatInput from "../components/templates/forms/ChatInput";
 import useChat from "customHooks/useChat";
-
 const ChatScreen: React.FC = () => {
   const {
     input,
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
     display: "flex",
-    maxWidth: 480,
+    // maxWidth: 480,
     width: "100%",
     height: "100%",
     flexDirection: "column",

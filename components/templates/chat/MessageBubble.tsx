@@ -133,6 +133,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
     marginBottom: 10,
+    // overflow: "hidden",
+    backgroundColor: "orange",
   },
   ownMessageContainer: {
     justifyContent: "flex-end",
@@ -149,8 +151,9 @@ const styles = StyleSheet.create({
   },
   messageContent: {
     borderRadius: 10,
-    padding: 13,
+    padding: 10,
     maxWidth: "80%",
+    backgroundColor: "green",
   },
   ownMessageContent: {
     backgroundColor: "#1D264D",
@@ -164,7 +167,15 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins, sans-serif",
     fontSize: 12,
     fontWeight: "400",
-    width: "100%",
+    // maxWidth: "100%",
+    // width: "90%",
+    flexShrink: 1,
+    // font-size: 16px;
+    lineHeight: 1.5,
+    width: "30ch" /* Limits the width to approximately 30 characters */,
+    overflow: "hidden" /* Hides any overflowing text */,
+    textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
+    whiteSpace: "nowrap" /* Keeps text in a single line */,
   },
   ownMessageText: {
     color: "#FFF",
@@ -191,6 +202,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: 10,
+    backgroundColor: "red",
   },
 });
 

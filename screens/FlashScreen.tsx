@@ -10,53 +10,50 @@ import {
   TextInput,
 } from "react-native";
 
-function FlashScreen() {
+function FlashScreen({ navigation }: any) {
+  const goToChatScreen = () => {
+    setTimeout(() => {
+      console.log("working");
+      navigation.navigate("Chat");
+    }, 2000);
+  };
+  goToChatScreen();
   return (
     <View style={styles.view1}>
-      <Image
+      {/* <Image
         // resizeMode="cover"
         fitContent
         source={{
           uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/f9079cb828bd22ac21243314ad40f0a63dcd35080d09c481695c38dd20ad8a8d?",
         }}
         style={styles.image1}
-      >
-        <View style={styles.view2}>
-          <Image
-            // resizeMode="auto"
-            source={{
-              uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/61adcff51e5d22dcb682eabc6094799c3fd7b89194127cab34074afff8324579?",
-            }}
-            style={styles.image2}
-          />
-          <View style={styles.view3}>
-            <Text>
-              Find your perfect match on this <br />
-              matrimony app
-            </Text>
-          </View>
-          <View style={styles.view4}>
-            <Text>Create an account</Text>
-          </View>
-          <View style={styles.view5}>
-            <Text>Log in</Text>
-          </View>
-        </View>
-      </Image>
+      > */}
+      <View style={styles.view2}>
+        {/* <Text style={styles.heading}>hello</Text> */}
+        <Image
+          // resizeMode="auto"
+          source={{
+            uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/61adcff51e5d22dcb682eabc6094799c3fd7b89194127cab34074afff8324579?",
+          }}
+          style={styles.image2}
+        />
+      </View>
+      {/* </Image> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   view1: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#000",
     display: "flex",
-    maxWidth: 480,
+    flex: 1,
+    // maxWidth: 480,
     width: "100%",
     flexDirection: "column",
     alignItems: "stretch",
     fontSize: 16,
-    color: "#FFF",
+    color: "#000",
     fontWeight: "500",
     justifyContent: "center",
     // margin: "0 auto",
@@ -68,23 +65,23 @@ const styles = StyleSheet.create({
     aspectRatio: "0.46",
     width: "100%",
     flexDirection: "column",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "center",
   },
   view2: {
     // background:
     //   "linear-gradient(180deg, rgba(29, 38, 77, 0.00) 0.29%, #1D264D 82.27%)",
-    position: "relative",
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
-    alignItems: "stretch",
+    // position: "relative",
+    // display: "flex",
+    // width: "100%",
+    // flexDirection: "column",
+    // alignItems: "stretch",
     // padding: "80px 20px 20px",
   },
   image2: {
     alignSelf: "center",
-    position: "relative",
-    marginTop: 378,
+    // position: "relative",
+    // marginTop: 378,
     width: 217,
     maxWidth: "100%",
     aspectRatio: "1.69",
@@ -115,5 +112,44 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // padding: "17px 60px",
   },
+  heading: {
+    fontSize: 25,
+    color: "#fff",
+  },
 });
+export default FlashScreen;
 
+// import React, { useEffect } from 'react';
+// import { View, Text, Button, BackHandler, Alert } from 'react-native';
+
+// const App = () => {
+//   useEffect(() => {
+//     const backAction = () => {
+//       Alert.alert("Hold on!", "Are you sure you want to exit the app?", [
+//         {
+//           text: "Cancel",
+//           onPress: () => null,
+//           style: "cancel"
+//         },
+//         { text: "YES", onPress: () => BackHandler.exitApp() }
+//       ]);
+//       return true;
+//     };
+
+//     const backHandler = BackHandler.addEventListener(
+//       "hardwareBackPress",
+//       backAction
+//     );
+
+//     return () => backHandler.remove();
+//   }, []);
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Press back button to exit the app</Text>
+//       <Button title="Exit" onPress={() => BackHandler.exitApp()} />
+//     </View>
+//   );
+// };
+
+// export default App;
