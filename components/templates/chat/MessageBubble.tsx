@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Image, Text } from "react-native";
 
 type MessageBubbleProps = {
   message: string;
@@ -7,10 +7,100 @@ type MessageBubbleProps = {
   isOwnMessage: boolean;
 };
 
-const MessageBubble: React.FC<MessageBubbleProps> = ({ message, time, isOwnMessage }) => {
+const MessageBubble: React.FC<MessageBubbleProps> = ({
+  message,
+  time,
+  isOwnMessage,
+}) => {
   return (
-    <View style={[styles.bubbleContainer, isOwnMessage ? styles.ownMessageContainer : styles.otherMessageContainer]}>
-      {!isOwnMessage && (
+    <View
+      style={[
+        styles.bubbleContainer,
+        isOwnMessage
+          ? styles.ownMessageContainer
+          : styles.otherMessageContainer,
+      ]}
+    >
+      {!isOwnMessage ? (
+        <View>
+          <View style={[styles.chatView]}>
+            <Image
+              //   resizeMode="auto"
+              source={{
+                uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&",
+              }}
+              style={styles.avatar}
+            />
+            <View
+              style={[
+                styles.messageContent,
+                isOwnMessage
+                  ? styles.ownMessageContent
+                  : styles.otherMessageContent,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.messageText,
+                  isOwnMessage
+                    ? styles.ownMessageText
+                    : styles.otherMessageText,
+                ]}
+              >
+                {message}
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={[
+              styles.timeText,
+              isOwnMessage ? styles.ownTimeText : styles.otherTimeText,
+            ]}
+          >
+            {time}
+          </Text>
+        </View>
+      ) : (
+        <View>
+          <View style={[styles.chatView]}>
+            <View
+              style={[
+                styles.messageContent,
+                isOwnMessage
+                  ? styles.ownMessageContent
+                  : styles.otherMessageContent,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.messageText,
+                  isOwnMessage
+                    ? styles.ownMessageText
+                    : styles.otherMessageText,
+                ]}
+              >
+                {message}
+              </Text>
+            </View>
+            <Image
+              //   resizeMode="auto"
+              source={{
+                uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&",
+              }}
+              style={styles.avatar}
+            />
+          </View>
+          <Text
+            style={[
+              styles.timeText,
+              isOwnMessage ? styles.ownTimeText : styles.otherTimeText,
+            ]}
+          >
+            {time}
+          </Text>
+        </View>
+      )}
+      {/* {!isOwnMessage && (
         <Image
         //   resizeMode="auto"
           source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
@@ -31,7 +121,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, time, isOwnMessa
           source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
           style={styles.avatar}
         />
-      )}
+      )} */}
     </View>
   );
 };
@@ -40,19 +130,20 @@ const styles = StyleSheet.create({
   bubbleContainer: {
     display: "flex",
     width: "100%",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "stretch",
     marginBottom: 10,
   },
   ownMessageContainer: {
-    alignItems: "flex-end",
+    justifyContent: "flex-end",
   },
   otherMessageContainer: {
-    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   avatar: {
     borderRadius: 15,
     width: 30,
+    height: 30,
     aspectRatio: 1,
     marginTop: 7,
   },
@@ -73,6 +164,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins, sans-serif",
     fontSize: 12,
     fontWeight: "400",
+    width: "100%",
   },
   ownMessageText: {
     color: "#FFF",
@@ -94,6 +186,11 @@ const styles = StyleSheet.create({
   otherTimeText: {
     alignSelf: "flex-start",
     marginLeft: 38,
+  },
+  chatView: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
   },
 });
 

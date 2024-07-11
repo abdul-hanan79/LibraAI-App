@@ -3,8 +3,9 @@ import { TamaguiProvider, View, createTamagui } from "@tamagui/core"; // or 'tam
 // import { Provider } from "react-redux";
 // import { PersistGate } from "redux-persist/integration/react";
 import { config } from "@tamagui/config/v3";
-import FlashScreen from "screens/FlashScreen";
+// import FlashScreen from "screens/FlashScreen";
 import Counter from "screens/Counter";
+import ChatScreen from "screens/ChatScreen";
 // you usually export this from a tamagui.config.ts file
 
 const tamaguiConfig = createTamagui(config);
@@ -21,8 +22,8 @@ export default function app() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       {/* <FlashScreen /> */}
-      <Counter />
-
+      {/* <Counter /> */}
+      <ChatScreen />
       {/* <Provider>
         <PersistGate>
           <View>
