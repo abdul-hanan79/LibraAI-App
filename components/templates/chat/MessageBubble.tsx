@@ -131,10 +131,10 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "100%",
     flexDirection: "row",
-    alignItems: "stretch",
+    // alignItems: "stretch",
     marginBottom: 10,
     // overflow: "hidden",
-    backgroundColor: "orange",
+    // backgroundColor: "orange",
   },
   ownMessageContainer: {
     justifyContent: "flex-end",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     maxWidth: "80%",
-    backgroundColor: "green",
+    // backgroundColor: "green",
   },
   ownMessageContent: {
     backgroundColor: "#1D264D",
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
     // width: "90%",
     flexShrink: 1,
     // font-size: 16px;
-    lineHeight: 1.5,
-    width: "30ch" /* Limits the width to approximately 30 characters */,
+    // lineHeight: 1.5,
+    // width: "30ch" /* Limits the width to approximately 30 characters */,
     overflow: "hidden" /* Hides any overflowing text */,
-    textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
-    whiteSpace: "nowrap" /* Keeps text in a single line */,
+    // textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
+    // whiteSpace: "nowrap" /* Keeps text in a single line */,
   },
   ownMessageText: {
     color: "#FFF",
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: 10,
-    backgroundColor: "red",
+    // backgroundColor: "red",
   },
 });
 

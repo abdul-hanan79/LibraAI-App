@@ -10,6 +10,8 @@ import { NavigationContainer } from "@react-navigation/native";
 // you usually export this from a tamagui.config.ts file
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FlashScreen from "screens/FlashScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
 const tamaguiConfig = createTamagui(config);
 // make TypeScript type everything based on your config
 
@@ -24,30 +26,37 @@ export default function app() {
   const Stack = createNativeStackNavigator();
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <NavigationContainer>
-        {/* <FlashScreen /> */}
-        {/* <Counter /> */}
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={FlashScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Chat"
-            component={ChatScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-        {/* <ChatScreen /> */}
-        {/* <Provider>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          {/* <FlashScreen /> */}
+          {/* <Counter /> */}
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={FlashScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Chat"
+              component={ChatScreen}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+          {/* <ChatScreen /> */}
+          {/* <Provider>
         <PersistGate>
           <View>
             
           </View>
         </PersistGate>
       </Provider> */}
-      </NavigationContainer>
+        </NavigationContainer>
+      </SafeAreaView>
     </TamaguiProvider>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

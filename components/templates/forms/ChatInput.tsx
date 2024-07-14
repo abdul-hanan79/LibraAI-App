@@ -1,9 +1,18 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { View, StyleSheet, Image, TextInput } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TextInput,
+  useColorScheme,
+} from "react-native";
 import { Button } from "tamagui";
 
 const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
+  console.log("value", value);
+  const color = useColorScheme() === "dark";
+  console.log("🚀 ~ ChatInput ~ color:", color)
   return (
     <View style={styles.inputContainer}>
       <View style={styles.inputWrapper}>
@@ -16,9 +25,10 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
         />
         <TextInput
           value={value}
-          onChange={(e: any) => {
+          onChangeText={(text) => {
             // console.log("🚀 ~ ChatInput ~ text:", text);
-            setValue(e.target.value);
+            // console.log("🚀 ~ ChatInput ~ ChatInput:", e.target)
+            setValue(text);
           }}
           style={styles.textInput}
           placeholder="Write a message..."
@@ -48,7 +58,9 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
-    marginTop: 56,
+    marginTop: 5,
+    marginBottom: 10,
+    width: "100%",
     paddingHorizontal: 21,
     gap: 12,
   },
@@ -56,9 +68,12 @@ const styles = StyleSheet.create({
     borderRadius: 33,
     backgroundColor: "rgba(229, 233, 249, 0.56)",
     display: "flex",
-    alignItems: "center",
     flexDirection: "row",
-    flexGrow: 1,
+    width: "85%",
+    // flexDirection:"column",
+    // alignItems: "center",
+    // flexDirection: "row",
+    // flexGrow: 1,
     padding: 12,
   },
   attachIcon: {

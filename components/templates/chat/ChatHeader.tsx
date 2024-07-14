@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 type ChatHeaderProps = {
   name: string;
@@ -10,11 +11,12 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ name, status }) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerLeft}>
-        <Image
+        {/* <Image
         //   resizeMode="auto"
           source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/9aa0bdf14a101562363c7ea02f21382417aee7202d72bcce76fb7b8bb0a2551b?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
           style={styles.backIcon}
-        />
+        /> */}
+        <Ionicons name="chevron-back-outline" size={28} color="black" />
         <View style={styles.userInfo}>
           <Image
             // resizeMode="auto"
@@ -44,20 +46,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     display: "flex",
     width: "100%",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "space-between",
-    padding: 20,
+    padding: 12,
     flexDirection: 'row',
   },
   headerLeft: {
     display: "flex",
     alignItems: "center",
     flexDirection: 'row',
+    gap:2,
   },
   backIcon: {
     width: 16,
-    aspectRatio: 1.14,
-    marginRight: 18,
+    height:16,
+    // aspectRatio: 1.14,
+    // marginRight: 18,
   },
   userInfo: {
     display: "flex",

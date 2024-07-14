@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   messageContainer: {
     flex: 1,
-    padding: 21,
+    padding: 10,
   },
 });
 
