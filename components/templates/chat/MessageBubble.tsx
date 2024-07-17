@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
-
+import Markdown from "react-native-markdown-display";
 type MessageBubbleProps = {
   message: string;
   time: string;
@@ -39,7 +39,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
                   : styles.otherMessageContent,
               ]}
             >
-              <Text
+              <Markdown style={styles.otherMessageText}>{message}</Markdown>
+              {/* <Text
                 style={[
                   styles.messageText,
                   isOwnMessage
@@ -48,7 +49,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
                 ]}
               >
                 {message}
-              </Text>
+              </Text> */}
             </View>
           </View>
           <Text
@@ -182,6 +183,18 @@ const styles = StyleSheet.create({
   },
   otherMessageText: {
     color: "#000",
+    fontFamily: "Poppins, sans-serif",
+    fontSize: 6,
+    fontWeight: "400",
+    // maxWidth: "100%",
+    // width: "90%",
+    flexShrink: 1,
+    // font-size: 16px;
+    // lineHeight: 1.5,
+    // width: "30ch" /* Limits the width to approximately 30 characters */,
+    overflow: "hidden" /* Hides any overflowing text */,
+    // textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
+    // whiteSpace: "nowrap" /* Keeps text in a single line */,
   },
   timeText: {
     color: "#626262",
