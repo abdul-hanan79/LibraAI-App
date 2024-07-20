@@ -1,14 +1,6 @@
 import * as React from "react";
-import {
-  FlatList,
-  ScrollView,
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  Pressable,
-  TextInput,
-} from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import FastImage from "react-native-fast-image";
 
 function FlashScreen({ navigation }: any) {
   const goToChatScreen = () => {
@@ -17,28 +9,19 @@ function FlashScreen({ navigation }: any) {
       navigation.navigate("Chat");
     }, 2000);
   };
-  goToChatScreen();
+  // goToChatScreen();
   return (
     <View style={styles.view1}>
-      {/* <Image
-        // resizeMode="cover"
-        fitContent
-        source={{
-          uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/f9079cb828bd22ac21243314ad40f0a63dcd35080d09c481695c38dd20ad8a8d?",
-        }}
-        style={styles.image1}
-      > */}
       <View style={styles.view2}>
-        {/* <Text style={styles.heading}>hello</Text> */}
         <Image
           // resizeMode="auto"
-          source={{
-            uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/61adcff51e5d22dcb682eabc6094799c3fd7b89194127cab34074afff8324579?",
-          }}
+          source={require("assets/logo.png")}
           style={styles.image2}
         />
       </View>
-      {/* </Image> */}
+      <View style={{ justifyContent: "flex-end" }}>
+        <Text style={styles.heading}>Powered by Abdul Hanan</Text>
+      </View>
     </View>
   );
 }
@@ -82,8 +65,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // position: "relative",
     // marginTop: 378,
-    width: 217,
-    maxWidth: "100%",
+    width: 220,
+    height: 230,
+    // maxWidth: "100%",
     aspectRatio: "1.69",
   },
   view3: {
@@ -113,8 +97,9 @@ const styles = StyleSheet.create({
     // padding: "17px 60px",
   },
   heading: {
-    fontSize: 25,
+    fontSize: 12,
     color: "#fff",
+    textAlign: "center",
   },
 });
 export default FlashScreen;
