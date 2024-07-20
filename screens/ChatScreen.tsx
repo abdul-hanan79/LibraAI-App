@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import ChatHeader from "../components/templates/chat/ChatHeader";
 import MessageBubble from "../components/templates/chat/MessageBubble";
 import ChatInput from "../components/templates/forms/ChatInput";
 import useChat from "customHooks/useChat";
+import { Button } from "tamagui";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import styled from "styled-components";
+
 const ChatScreen: React.FC = () => {
   const {
     input,
@@ -14,19 +18,34 @@ const ChatScreen: React.FC = () => {
     messages,
     setMessages,
   } = useChat();
-  console.log("🚀 ~ loading:", loading);
-  // console.log("🚀 ~ input:", typeof input);
-  console.log("messages in my cojmponn", messages);
+  console.log("🚀 ~ loadng in chat screen", loading);
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const handleScrollToDown = () => {
+    scrollViewRef.current?.scrollToEnd({ animated: true });
+  };
+
+  useEffect(() => {
+    handleScrollToDown();
+  }, [messages]);
+  const MyButton = styled(Button)`
+    background-color: red;
+    position: absolute;
+    right: 10;
+    bottom: 100;
+  `;
   return (
     <View style={styles.container}>
       <ChatHeader name="Libra AI" status="Online" />
-      <ScrollView style={styles.messageContainer}>
+      <ScrollView style={styles.messageContainer} ref={scrollViewRef}>
         {messages.map((msg: any, index: number) => (
           <MessageBubble
             key={index}
+            index={index}
+            length={messages.length}
             message={msg.text}
-            time={"4:00 PM"}
+            time={msg.dateTime}
             isOwnMessage={msg.senderId === "02"}
+            loading={loading}
           />
         ))}
       </ScrollView>
@@ -36,6 +55,11 @@ const ChatScreen: React.FC = () => {
         loading={loading}
         handleSendMessage={handleSendMessage}
       />
+      <MyButton
+        onPress={handleScrollToDown}
+        icon={<Ionicons name="chevron-down-outline" size={20} color="white" />}
+        circular={true}
+      ></MyButton>
     </View>
   );
 };

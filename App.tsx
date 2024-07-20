@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FlashScreen from "screens/FlashScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native";
+import { ColorSchemeProvider } from "context/ColorSchemeContext";
 const tamaguiConfig = createTamagui(config);
 // make TypeScript type everything based on your config
 
@@ -26,32 +27,34 @@ export default function app() {
   const Stack = createNativeStackNavigator();
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <SafeAreaView style={styles.container}>
-        <NavigationContainer>
-          {/* <FlashScreen /> */}
-          {/* <Counter /> */}
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={FlashScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Chat"
-              component={ChatScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-          {/* <ChatScreen /> */}
-          {/* <Provider>
+      <ColorSchemeProvider>
+        <SafeAreaView style={styles.container}>
+          <NavigationContainer>
+            {/* <FlashScreen /> */}
+            {/* <Counter /> */}
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={FlashScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Chat"
+                component={ChatScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+            {/* <ChatScreen /> */}
+            {/* <Provider>
         <PersistGate>
           <View>
             
           </View>
         </PersistGate>
       </Provider> */}
-        </NavigationContainer>
-      </SafeAreaView>
+          </NavigationContainer>
+        </SafeAreaView>
+      </ColorSchemeProvider>
     </TamaguiProvider>
   );
 }

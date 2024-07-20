@@ -1,4 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useColorSchemeValue } from "context/ColorSchemeContext";
 
 import {
   View,
@@ -10,9 +11,11 @@ import {
 import { Button } from "tamagui";
 
 const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
+  const { isDarkMode } = useColorSchemeValue();
+
   console.log("value", value);
   const color = useColorScheme() === "dark";
-  console.log("🚀 ~ ChatInput ~ color:", color)
+  console.log("🚀 ~ ChatInput ~ color:", color);
   return (
     <View style={styles.inputContainer}>
       <View style={styles.inputWrapper}>
@@ -25,6 +28,7 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
         />
         <TextInput
           value={value}
+          multiline={true}
           onChangeText={(text) => {
             // console.log("🚀 ~ ChatInput ~ text:", text);
             // console.log("🚀 ~ ChatInput ~ ChatInput:", e.target)
@@ -38,8 +42,14 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
       <Button
         onPress={handleSendMessage}
         disabled={!value || loading}
-        icon={<Ionicons name="send-outline" size={20} color="white" />}
-        backgroundColor={"#000"}
+        icon={
+          <Ionicons
+            name="send-outline"
+            size={20}
+            color={isDarkMode ? "#000" : "#fff"}
+          />
+        }
+        backgroundColor={isDarkMode ? "#fff" : "#000"}
         circular={true}
       ></Button>
       {/* <Image
