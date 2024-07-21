@@ -12,7 +12,6 @@ type MessageBubbleProps = {
   index: number;
   length: number;
 };
-
 const MessageBubble: React.FC<MessageBubbleProps> = ({
   message,
   time,
@@ -39,7 +38,6 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
   };
   const { isDarkMode, toggleColorScheme } = useColorSchemeValue();
   const styles = createStyles(isDarkMode);
-  console.log("loadng in bubble", loading);
   return (
     <View
       style={[
@@ -167,28 +165,6 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
           </Text>
         </View>
       )}
-      {/* {!isOwnMessage && (
-        <Image
-        //   resizeMode="auto"
-          source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
-          style={styles.avatar}
-        />
-      )}
-      <View style={[styles.messageContent, isOwnMessage ? styles.ownMessageContent : styles.otherMessageContent]}>
-        <Text style={[styles.messageText, isOwnMessage ? styles.ownMessageText : styles.otherMessageText]}>
-          {message}
-        </Text>
-      </View>
-      <Text style={[styles.timeText, isOwnMessage ? styles.ownTimeText : styles.otherTimeText]}>
-        {time}
-      </Text>
-      {isOwnMessage && (
-        <Image
-        //   resizeMode="auto"
-          source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/2114ea018ff3d756b48f33eb36b2146daaad153e2f6f9a30820e7c8ed5340868?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
-          style={styles.avatar}
-        />
-      )} */}
     </View>
   );
 };
@@ -199,14 +175,9 @@ const createStyles = (isDarkMode: boolean) => {
       display: "flex",
       width: "100%",
       flexDirection: "row",
-      // alignItems: "stretch",
       marginBottom: 10,
-      // overflow: "hidden",
-      // backgroundColor: "orange",
     },
-    mainTextView: {
-      // backgroundColor: "red",
-    },
+    mainTextView: {},
     ownMessageContainer: {
       justifyContent: "flex-end",
     },
@@ -224,7 +195,6 @@ const createStyles = (isDarkMode: boolean) => {
       borderRadius: 10,
       padding: 10,
       maxWidth: "80%",
-      // backgroundColor: "green",
     },
     ownMessageContent: {
       backgroundColor: "#1D264D",
@@ -238,15 +208,8 @@ const createStyles = (isDarkMode: boolean) => {
       fontFamily: "Poppins, sans-serif",
       fontSize: 12,
       fontWeight: "400",
-      // maxWidth: "100%",
-      // width: "90%",
       flexShrink: 1,
-      // font-size: 16px;
-      // lineHeight: 1.5,
-      // width: "30ch" /* Limits the width to approximately 30 characters */,
       overflow: "hidden" /* Hides any overflowing text */,
-      // textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
-      // whiteSpace: "nowrap" /* Keeps text in a single line */,
     },
     ownMessageText: {
       color: "#FFF",
@@ -256,15 +219,8 @@ const createStyles = (isDarkMode: boolean) => {
       fontFamily: "Poppins, sans-serif",
       fontSize: 6,
       fontWeight: "400",
-      // maxWidth: "100%",
-      // width: "90%",
       flexShrink: 1,
-      // font-size: 16px;
-      // lineHeight: 1.5,
-      // width: "30ch" /* Limits the width to approximately 30 characters */,
       overflow: "hidden" /* Hides any overflowing text */,
-      // textOverflow: "ellipsis" /* Adds ellipsis (...) to indicate more text */,
-      // whiteSpace: "nowrap" /* Keeps text in a single line */,
     },
     timeText: {
       color: "#626262",
@@ -285,7 +241,6 @@ const createStyles = (isDarkMode: boolean) => {
       display: "flex",
       flexDirection: "row",
       gap: 10,
-      // backgroundColor: "red",
     },
     typingAnimationContainer: {
       alignSelf: "flex-start",

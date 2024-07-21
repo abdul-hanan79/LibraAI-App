@@ -2,25 +2,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColorSchemeValue } from "context/ColorSchemeContext";
 
 import {
-  View,
-  StyleSheet,
   Image,
+  StyleSheet,
   TextInput,
-  useColorScheme,
+  View
 } from "react-native";
 import { Button } from "tamagui";
 
 const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
   const { isDarkMode } = useColorSchemeValue();
-
-  console.log("value", value);
-  const color = useColorScheme() === "dark";
-  console.log("🚀 ~ ChatInput ~ color:", color);
-  return (
+return (
     <View style={styles.inputContainer}>
       <View style={styles.inputWrapper}>
         <Image
-          //   resizeMode="auto"
           source={{
             uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/7efbe7961921eb93373a15b722c66633c188d1a0dba1138faa0d8ac85c028b67?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&",
           }}
@@ -30,8 +24,6 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
           value={value}
           multiline={true}
           onChangeText={(text) => {
-            // console.log("🚀 ~ ChatInput ~ text:", text);
-            // console.log("🚀 ~ ChatInput ~ ChatInput:", e.target)
             setValue(text);
           }}
           style={styles.textInput}
@@ -52,13 +44,6 @@ const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
         backgroundColor={isDarkMode ? "#fff" : "#000"}
         circular={true}
       ></Button>
-      {/* <Image
-        // resizeMode="auto"
-        source={{
-          uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/5ee9618fec80dfc96b2d22a84a434f039977c343db72f48271bfbfe0cdf3dabe?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&",
-        }}
-        style={styles.sendIcon}
-      /> */}
     </View>
   );
 };
