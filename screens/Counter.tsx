@@ -19,7 +19,6 @@ const Counter = () => {
         <Wrapper>
           <Text>value {counter}</Text>
           <Input
-            // value={counter}
             keyboardType="numeric"
             onChangeText={(text) => setCounter(parseInt(text))}
           />
