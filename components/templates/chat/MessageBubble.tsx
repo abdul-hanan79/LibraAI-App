@@ -1,5 +1,5 @@
 import { useColorSchemeValue } from "context/ColorSchemeContext";
-import React from "react";
+import React, { useMemo } from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import Markdown from "react-native-markdown-display";
 
@@ -12,6 +12,22 @@ type MessageBubbleProps = {
   index: number;
   length: number;
 };
+const formatDateTime = (dateTimeStr: string) => {
+  const date = new Date(dateTimeStr);
+
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+
+  const timeStr = `${hours}:${minutesStr} ${ampm}`;
+  const dateStr = date.toLocaleDateString(); // Use desired date format
+
+  return `${dateStr} ${timeStr}`;
+};
 const MessageBubble: React.FC<MessageBubbleProps> = ({
   message,
   time,
@@ -20,24 +36,50 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
   index,
   length,
 }) => {
-  const formatDateTime = (dateTimeStr: string) => {
-    const date = new Date(dateTimeStr);
-
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    const minutesStr = minutes < 10 ? "0" + minutes : minutes;
-
-    const timeStr = `${hours}:${minutesStr} ${ampm}`;
-    const dateStr = date.toLocaleDateString(); // Use desired date format
-
-    return `${dateStr} ${timeStr}`;
-  };
   const { isDarkMode, toggleColorScheme } = useColorSchemeValue();
   const styles = createStyles(isDarkMode);
+  const formattedDateTime = useMemo(() => formatDateTime(time), [time]);
+  console.log("loading in bubble", loading);
+  const markdownSheet = StyleSheet.create({
+    heading1: {
+      fontSize: 18,
+      backgroundColor: "#000000",
+      color: isDarkMode ? "#FFFFFF" : "#000",
+    },
+    heading2: {
+      fontSize: 16,
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontWeight: "bold",
+    },
+    heading3: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 14,
+    },
+    heading4: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 12,
+    },
+    heading5: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 10,
+    },
+    heading6: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 8,
+    },
+    paragraph: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 14,
+    },
+    text: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 14,
+    },
+    list_item: {
+      color: isDarkMode ? "#FFFFFF" : "#000",
+      fontSize: 14,
+    },
+  });
   return (
     <View
       style={[
@@ -89,7 +131,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
               isOwnMessage ? styles.ownTimeText : styles.otherTimeText,
             ]}
           >
-            {formatDateTime(time)}
+            {formattedDateTime}
           </Text>
           {loading && index === length - 1 && (
             <View style={[styles.chatView, { marginTop: 15 }]}>
@@ -206,7 +248,7 @@ const createStyles = (isDarkMode: boolean) => {
     },
     messageText: {
       fontFamily: "Poppins, sans-serif",
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: "400",
       flexShrink: 1,
       overflow: "hidden" /* Hides any overflowing text */,
@@ -217,15 +259,16 @@ const createStyles = (isDarkMode: boolean) => {
     otherMessageText: {
       color: isDarkMode ? "#Fff" : "#000",
       fontFamily: "Poppins, sans-serif",
-      fontSize: 6,
+      fontSize: 14,
       fontWeight: "400",
       flexShrink: 1,
       overflow: "hidden" /* Hides any overflowing text */,
     },
     timeText: {
-      color: "#626262",
+      // color: "#626262",
+      color: isDarkMode ? "#Fff" : "#626262",
       fontFamily: "Poppins, sans-serif",
-      fontSize: 9,
+      fontSize: 10,
       fontWeight: "400",
       marginTop: 6,
     },
@@ -248,27 +291,5 @@ const createStyles = (isDarkMode: boolean) => {
     },
   });
 };
-const markdownSheet = StyleSheet.create({
-  heading1: {
-    fontSize: 18,
-    backgroundColor: "#000000",
-    color: "#FFFFFF",
-  },
-  heading2: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  heading3: {
-    fontSize: 14,
-  },
-  heading4: {
-    fontSize: 12,
-  },
-  heading5: {
-    fontSize: 10,
-  },
-  heading6: {
-    fontSize: 8,
-  },
-});
+
 export default MessageBubble;

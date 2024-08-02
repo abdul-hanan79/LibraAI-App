@@ -1,14 +1,23 @@
-// ColorSchemeContext.js
 import React, { createContext, useState, useContext } from "react";
 
-//@ts-ignore
-const ColorSchemeContext = createContext();
+interface ColorSchemeContextType {
+  isDarkMode: boolean;
+  toggleColorScheme: () => void;
+}
 
-export const ColorSchemeProvider = ({ children }: any) => {
+const ColorSchemeContext = createContext<ColorSchemeContextType | undefined>(
+  undefined
+);
+
+export const ColorSchemeProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const toggleColorScheme = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   return (
@@ -18,4 +27,12 @@ export const ColorSchemeProvider = ({ children }: any) => {
   );
 };
 
-export const useColorSchemeValue = () => useContext(ColorSchemeContext);
+export const useColorSchemeValue = (): ColorSchemeContextType => {
+  const context = useContext(ColorSchemeContext);
+  if (!context) {
+    throw new Error(
+      "useColorSchemeValue must be used within a ColorSchemeProvider"
+    );
+  }
+  return context;
+};

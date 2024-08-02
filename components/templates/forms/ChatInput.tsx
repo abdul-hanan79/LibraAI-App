@@ -1,17 +1,14 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColorSchemeValue } from "context/ColorSchemeContext";
 
-import {
-  Image,
-  StyleSheet,
-  TextInput,
-  View
-} from "react-native";
+import { Image, StyleSheet, TextInput, View } from "react-native";
 import { Button } from "tamagui";
 
 const ChatInput = ({ value, setValue, handleSendMessage, loading }: any) => {
   const { isDarkMode } = useColorSchemeValue();
-return (
+  console.log("loading in input", loading);
+  
+  return (
     <View style={styles.inputContainer}>
       <View style={styles.inputWrapper}>
         <Image

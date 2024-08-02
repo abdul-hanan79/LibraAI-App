@@ -1,15 +1,32 @@
-import * as React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Image, StyleSheet, Text, View, Animated } from "react-native";
 import FastImage from "react-native-fast-image";
 
 function FlashScreen({ navigation }: any) {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.5)).current;
   const goToChatScreen = () => {
     setTimeout(() => {
       console.log("working");
       navigation.navigate("Chat");
     }, 2000);
   };
-  // goToChatScreen();
+  useEffect(() => {
+    Animated.sequence([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        friction: 3,
+        tension: 40,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fadeAnim, scaleAnim]);
+  goToChatScreen();
   return (
     <View style={styles.view1}>
       <View style={styles.view2}>
@@ -19,8 +36,19 @@ function FlashScreen({ navigation }: any) {
           style={styles.image2}
         />
       </View>
-      <View style={{ justifyContent: "flex-end" }}>
-        <Text style={styles.heading}>Powered by Abdul Hanan</Text>
+      <View style={{ justifyContent: "flex-end", marginBottom: 90 }}>
+        <Animated.Text
+          style={[
+            styles.heading,
+            {
+              opacity: fadeAnim,
+              transform: [{ scale: scaleAnim }],
+            },
+          ]}
+        >
+          Powered by Abdul Hanan
+        </Animated.Text>
+        {/* <Text style={styles.heading}></Text> */}
       </View>
     </View>
   );
@@ -38,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#000",
     fontWeight: "500",
-    justifyContent: "center",
+    justifyContent: "space-between",
     // margin: "0 auto",
   },
   image1: {
@@ -52,6 +80,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   view2: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     // background:
     //   "linear-gradient(180deg, rgba(29, 38, 77, 0.00) 0.29%, #1D264D 82.27%)",
     // position: "relative",
@@ -97,7 +129,7 @@ const styles = StyleSheet.create({
     // padding: "17px 60px",
   },
   heading: {
-    fontSize: 12,
+    fontSize: 16,
     color: "#fff",
     textAlign: "center",
   },

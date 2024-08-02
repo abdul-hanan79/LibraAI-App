@@ -7,6 +7,8 @@ import useChat from "customHooks/useChat";
 import { Button } from "tamagui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import styled from "styled-components";
+// import { LinearGradient } from "expo-linear-gradient";
+import { useColorSchemeValue } from "context/ColorSchemeContext";
 
 const ChatScreen: React.FC = () => {
   const {
@@ -16,23 +18,38 @@ const ChatScreen: React.FC = () => {
     setLoading,
     handleSendMessage,
     messages,
-    setMessages,
+    // setMessages,
   } = useChat();
-  console.log("🚀 ~ loadng in chat screen", loading);
+  console.log("🚀 ~ loading:", loading);
+  // console.log("🚀 ~ loadng in chat screen", loading);
   const scrollViewRef = useRef<ScrollView | null>(null);
   const handleScrollToDown = () => {
     scrollViewRef.current?.scrollToEnd({ animated: true });
   };
-
   useEffect(() => {
     handleScrollToDown();
   }, [messages]);
   const MyButton = styled(Button)`
-    background-color: red;
+    background-color: #7426ef;
+    /* background: linear-gradient(to right, #7426ef, #3372e3); */
     position: absolute;
     right: 10;
     bottom: 100;
   `;
+  // const GradientButton = styled(LinearGradient).attrs({
+  //   colors: ["#7426ef", "#3372e3"],
+  //   start: { x: 0, y: 0 },
+  //   end: { x: 1, y: 0 },
+  // })`
+  //   position: absolute;
+  //   right: 10px;
+  //   bottom: 100px;
+  //   padding: 15px 30px;
+  //   border-radius: 25px;
+  // `;
+  const { isDarkMode, toggleColorScheme } = useColorSchemeValue();
+  const styles = createStyles(isDarkMode);
+
   return (
     <View style={styles.container}>
       <ChatHeader name="Libra AI" status="Online" />
@@ -55,29 +72,33 @@ const ChatScreen: React.FC = () => {
         loading={loading}
         handleSendMessage={handleSendMessage}
       />
+      {/* <GradientButton> */}
       <MyButton
         onPress={handleScrollToDown}
         icon={<Ionicons name="chevron-down-outline" size={20} color="white" />}
         circular={true}
       ></MyButton>
+      {/* </GradientButton> */}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    display: "flex",
-    // maxWidth: 480,
-    width: "100%",
-    height: "100%",
-    flexDirection: "column",
-    // margin: "0 auto",
-  },
-  messageContainer: {
-    flex: 1,
-    padding: 10,
-  },
-});
+const createStyles = (isDarkMode: boolean) => {
+  return StyleSheet.create({
+    container: {
+      backgroundColor: isDarkMode ? "#000" : "#ffff",
+      display: "flex",
+      // maxWidth: 480,
+      width: "100%",
+      height: "100%",
+      flexDirection: "column",
+      // margin: "0 auto",
+    },
+    messageContainer: {
+      flex: 1,
+      padding: 10,
+      marginBottom: 15,
+    },
+  });
+};
 
 export default ChatScreen;
