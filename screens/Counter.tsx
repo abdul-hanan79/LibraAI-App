@@ -17,7 +17,7 @@ const Counter = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <Wrapper>
-          <Text>value {counter}</Text>
+          <Text>value: {counter}</Text>
           <Input
             keyboardType="numeric"
             onChangeText={(text) => setCounter(parseInt(text))}
