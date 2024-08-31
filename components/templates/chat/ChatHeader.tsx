@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, Text, Switch } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import styled from "styled-components";
 import { useColorSchemeValue } from "context/ColorSchemeContext";
+import TestingSwtich from "./TestingSwtic";
 
 type ChatHeaderProps = {
   name: string;
@@ -45,11 +46,16 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ name, status }) => {
         source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/a90b53bd153475e0df705cd150d6b1fb02298bcbdcb48d8e470c97172c2d124a?apiKey=501857dd4f1c40f4a47a652b4b27bf3b&" }}
         style={styles.menuIcon}
       /> */}
-      <CustomSwitch
+      <TestingSwtich
+        onValueChange={toggleColorScheme}
+        value={isDarkMode}
+        isEnabled={isEnabled}
+      />
+      {/* <CustomSwitch
         onValueChange={toggleColorScheme}
         value={isDarkMode}
         // isEnabled={isEnabled}
-      />
+      /> */}
     </View>
   );
 };
