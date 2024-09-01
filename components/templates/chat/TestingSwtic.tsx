@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerLight: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#ffff",
   },
   containerDark: {
     backgroundColor: "#000000",
