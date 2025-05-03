@@ -1,2 +1,2 @@
-Libara AI
+Libra AI
 
