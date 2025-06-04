@@ -21,6 +21,9 @@ type Conf = typeof tamaguiConfig;
 declare module "@tamagui/core" {
   // or 'tamagui'
 
+
+  
+
   interface TamaguiCustomConfig extends Conf {}
 }
 export default function app() {
